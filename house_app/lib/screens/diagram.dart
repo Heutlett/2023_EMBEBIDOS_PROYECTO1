@@ -503,14 +503,12 @@ class _PuertaState extends State<Puerta> {
     super.initState();
 
     // Utiliza un Timer.periodic para obtener el estado del LED cada 2 segundos.
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 2), (timer) {
       getDoorState(widget.name).then((response) {
         setState(() {
           isOpen = jsonDecode(response.body)['data']['state'];
         });
-      }).catchError((error) {
-        print('Error: $error');
-      });
+      }).catchError((error) {});
     });
   }
 
