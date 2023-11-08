@@ -23,322 +23,24 @@ class _DiagramScreenState extends State<DiagramScreen> {
     return Scaffold(
       body: Container(
         color: const Color.fromARGB(255, 8, 45, 82),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    encenderTodasLuces();
-                  },
-                  child: Container(
-                    width: 230,
-                    color: Colors.green,
-                    padding: const EdgeInsets.all(16),
-                    child: const Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Encender todas las luces'),
-                            Icon(Icons.light)
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {
-                    apagarTodasLuces();
-                  },
-                  child: Container(
-                    width: 230,
-                    color: Colors.red,
-                    padding: const EdgeInsets.all(16),
-                    child: const Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Apagar todas las luces'),
-                            Icon(Icons.light_outlined)
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+        child: GestureDetector(
+          onTap: () {
+            _takePhoto();
+          },
+          child: Center(
+            child: Container(
+              width: 230,
+              color: Colors.amber,
+              padding: const EdgeInsets.all(16),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Tomar foto y filtrarla'),
+                  Icon(Icons.camera_alt_outlined)
+                ],
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Cuadro 1
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(color: Colors.white, width: 4.0),
-                          left: BorderSide(color: Colors.white, width: 4.0),
-                        ),
-                        color: Colors.black,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 55),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Luz(
-                                isOn: isOnLuzCuarto1,
-                                angle: -90,
-                                name: 'bedroom1',
-                              ),
-                              const Text(
-                                'Cuarto 1',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              const SizedBox(width: 55),
-                            ],
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Puerta(
-                                name: "1",
-                                angle: -90,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Pared derecha cuarto 1
-                    Container(
-                      width: 0,
-                      height: 250,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          right: BorderSide(color: Colors.white, width: 4.0),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.black,
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Puerta(
-                            name: "2",
-                            angle: -180,
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Cuadro 2
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: const BoxDecoration(
-                          border: Border(
-                            top: BorderSide(color: Colors.white, width: 4.0),
-                            right: BorderSide(color: Colors.white, width: 4.0),
-                          ),
-                          color: Colors.black),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Luz(
-                            isOn: isOnLuzCocina,
-                            angle: 0,
-                            name: 'kitchen',
-                          ),
-                          const Text(
-                            'Cocina',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: 180,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(
-                                        color: Colors.black, width: 4.0),
-                                    bottom: BorderSide(
-                                        color: Colors.black, width: 4.0),
-                                    left: BorderSide(
-                                        color: Colors.black, width: 4.0),
-                                  ),
-                                  color: Colors.black,
-                                ),
-                                child: Container(
-                                  color: Colors.white,
-                                  child: const Center(
-                                    child: Text(
-                                      "Desayunador",
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            'Comedor',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Luz(
-                            name: 'dinning-room',
-                            isOn: isOnLuzComedor,
-                            angle: -180,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(color: Colors.white, width: 4.0),
-                          bottom: BorderSide(color: Colors.white, width: 4.0),
-                          left: BorderSide(color: Colors.white, width: 4.0),
-                        ),
-                        color: Colors.black,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Puerta(
-                                name: "3",
-                                angle: -90,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Luz(
-                                isOn: isOnLuzCuarto2,
-                                angle: -90,
-                                name: 'bedroom2',
-                              ),
-                              const Text(
-                                'Cuarto 2',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              const SizedBox(width: 55),
-                            ],
-                          ),
-                          const SizedBox(height: 55),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 0,
-                      height: 250,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          right: BorderSide(color: Colors.white, width: 4.0),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.black,
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Puerta(
-                            name: "4",
-                            angle: 0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(color: Colors.white, width: 4.0),
-                          bottom: BorderSide(color: Colors.white, width: 4.0),
-                          right: BorderSide(color: Colors.white, width: 4.0),
-                        ),
-                        color: Colors.black,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(width: 55),
-                          const Text(
-                            'Sala',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Luz(
-                            name: 'living-room',
-                            isOn: isOnLuzSala,
-                            angle: 90,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    _takePhoto();
-                  },
-                  child: Container(
-                    width: 230,
-                    color: Colors.amber,
-                    padding: const EdgeInsets.all(16),
-                    child: const Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Tomar foto de seguridad'),
-                            Icon(Icons.camera_alt_outlined)
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -502,14 +204,14 @@ class _PuertaState extends State<Puerta> {
   void initState() {
     super.initState();
 
-    // Utiliza un Timer.periodic para obtener el estado del LED cada 2 segundos.
-    Timer.periodic(const Duration(seconds: 2), (timer) {
-      getDoorState(widget.name).then((response) {
-        setState(() {
-          isOpen = jsonDecode(response.body)['data']['state'];
-        });
-      }).catchError((error) {});
-    });
+    // // Utiliza un Timer.periodic para obtener el estado del LED cada 2 segundos.
+    // Timer.periodic(const Duration(seconds: 2), (timer) {
+    //   getDoorState(widget.name).then((response) {
+    //     setState(() {
+    //       isOpen = jsonDecode(response.body)['data']['state'];
+    //     });
+    //   }).catchError((error) {});
+    // });
   }
 
   @override
